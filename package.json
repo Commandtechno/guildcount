@@ -7,7 +7,7 @@
     "start": "webpack serve --mode=development --open",
     "build": "cross-env NODE_ENV=production webpack",
     "predeploy": "cross-env NODE_ENV=production webpack",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://github.com/ItsRauf/guildcount.git"
   },
   "repository": {
     "type": "git",
