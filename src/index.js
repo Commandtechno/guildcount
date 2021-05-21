@@ -59,6 +59,6 @@ getUser().then((user) => {
 
   getGuilds().then(({ length }) => {
     const count = document.getElementById("text-xl");
-    count.innerText = `<h5 class="text-xl">You are in <b id="count">${length}</b> guilds</h5>`;
+    count.innerHTML = `<h5 class="text-xl">You are in <b id="count">${length}</b> guilds</h5>`;
   });
 });
