@@ -7,7 +7,7 @@ module.exports = {
         center: true,
       },
       colors: {
-        blurple: "#7289DA",
+        blurple: "#5865F2",
         notQuiteBlack: "#23272A",
       },
     },
