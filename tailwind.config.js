@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         blurple: "#5865F2",
         notQuiteBlack: "#23272A",
+        iconLightGray: "#C0BCBC",
       },
     },
   },
