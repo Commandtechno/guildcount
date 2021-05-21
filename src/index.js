@@ -15,7 +15,7 @@ history.pushState(
 );
 
 async function getUser() {
-  const userData = await fetch("https://discord.com/api/v8/users/@me", {
+  const userData = await fetch("https://discord.com/api/v9/users/@me", {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
@@ -29,7 +29,7 @@ async function getUser() {
 
 async function getGuilds(after = 0) {
   const guildData = await fetch(
-    `https://discord.com/api/v8/users/@me/guilds?after=${after}`,
+    `https://discord.com/api/v9/users/@me/guilds?after=${after}`,
     {
       method: "GET",
       mode: "cors",
@@ -40,17 +40,13 @@ async function getGuilds(after = 0) {
     }
   );
   const guilds = await guildData.json();
-  if (guilds.length === 100) {
-    guilds.concat(await getGuilds(guilds[99].id));
+  if (guilds.length === 200) {
+    guilds.concat(await getGuilds(guilds[199].id));
   }
   return guilds;
 }
 
-async function getData() {
-  return [await getUser(), await getGuilds()];
-}
-
-getData().then(([user, guilds]) => {
+getUser().then((user) => {
   const avatar = document.getElementById("avatar");
   avatar.setAttribute(
     "src",
@@ -61,6 +57,8 @@ getData().then(([user, guilds]) => {
   const userH3 = document.getElementById("user");
   userH3.innerText = `Hello ${user.username}#${user.discriminator}`;
 
-  const count = document.getElementById("count");
-  count.innerText = `${guilds.length}`;
+  getGuilds().then(({ length }) => {
+    const count = document.getElementById("text-xl");
+    count.innerText = `<h5 class="text-xl">You are in <b id="count">${length}</b> guilds</h5>`;
+  });
 });
